@@ -12,11 +12,11 @@ export default function cartReducer(state = InitialValues, action) {
     switch (action.type) {
         case CartConstants.ADD_PRODUCT: {
             const productIndex = findIndex(state.products, {
-                itemName: action.payload.itemName
+                productName: action.payload.productName
             })
             if (productIndex === -1) {
                 state.products.push({
-                    itemName: action.payload.itemName,
+                    productName: action.payload.productName,
                     price: action.payload.price,
                     qty: 1
                 })

@@ -1,34 +1,17 @@
 const InitialValues = {
   products: [{
-      itemName: "Banana",
-      price: 10
+      productId: "mss",
+      productName: "Managed Security Services",
+      price: 2549.99
     },
     {
-      itemName: "Mango",
-      price: 20
+      productId: "e&i",
+      productName: "Engineering & integration",
+      price: 1025.50
     },
     {
-      itemName: "WaterMelon",
-      price: 10
-    },
-    {
-      itemName: "Blueberry",
-      price: 50
-    },
-    {
-      itemName: "Guava",
-      price: 10
-    },
-    {
-      itemName: "Coconut",
-      price: 30
-    },
-    {
-      itemName: "Sugarcane",
-      price: 40
-    },
-    {
-      itemName: "Orange",
+      productId: "training",
+      productName: "Training",
       price: 100
     },
   ]

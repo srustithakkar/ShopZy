@@ -11,13 +11,6 @@ function App () {
             <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/cart" element={<Cart />} />
-                {/* <Route path="/aboutus" element={<AboutUs />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/contactus" element={<ContactUs />} />
-                <Route path="/faq" element={<Faq />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/policy" element={<Policy />} />
-                <Route path="/register" element={<Register />} /> */}
             </Routes>
         </div>
     );

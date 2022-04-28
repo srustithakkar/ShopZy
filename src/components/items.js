@@ -12,8 +12,8 @@ function Items(props) {
   return ( 
     <div className = "row m-4" > 
       {
-        products.map((item) => ( 
-          <ItemWrapper item = {item}/>
+        products.map((item,key) => ( 
+          <ItemWrapper item = {item} key={key}/>
         ))
       } 
     </div>

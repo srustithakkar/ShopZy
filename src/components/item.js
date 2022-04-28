@@ -8,7 +8,7 @@ function Item(props) {
         props.addProduct(item);
     }
     const getCartQuantity= () =>{
-        const cartProduct = find(products, {itemName: item.itemName});
+        const cartProduct = find(products, {productName: item.productName});
         if (isEmpty(cartProduct)){
             return 0
         } else {
@@ -16,12 +16,12 @@ function Item(props) {
         }
     }
     return (
-        <div className="col-3 text-center mb-1">
+        <div className="col-4 text-center mb-1">
             <Card>
                 <Card.Body>
-                    <Card.Title>{item.itemName}</Card.Title>
+                    <Card.Title>{item.productName}</Card.Title>
                     <span className="mb-1">
-                        <Card.Title>{item.price} Rs.</Card.Title>
+                        <Card.Title>$ {item.price}</Card.Title>
                     </span>
                 </Card.Body>
                 <Card.Body className="pt-0">
@@ -29,7 +29,7 @@ function Item(props) {
                         <div className="row">
                             <div className="col-12 text-center mt-0 p-0">
                                 <span><Button onClick={handleAdd} variant="info" md={4}>+</Button></span>
-                                <span><input style={{width: 40}} className="mt-1 ml-2 mr-2" type="number" id="item" value={getCartQuantity()} ></input></span>
+                                <span><input style={{width: 40}} className="mt-1 ml-2 mr-2" type="number" id="item" value={getCartQuantity()}  readOnly></input></span>
                             </div>
                         </div>
                     </Container>

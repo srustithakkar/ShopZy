@@ -7,12 +7,12 @@ function Navigation(props) {
 
     return (
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <Link class="navbar-brand" to="/">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <Link className="navbar-brand" to="/">
                 Shopzy
                 </Link>
                 <button
-                    class="navbar-toggler"
+                    className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navbarNav"
@@ -20,18 +20,18 @@ function Navigation(props) {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span class="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                        <Link class="nav-link" to="/">
-                            Home <span class="sr-only">(current)</span>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item active">
+                        <Link className="nav-link" to="/">
+                            Home <span className="sr-only">(current)</span>
                         </Link>
                         </li>
-                        <li class="nav-item">
-                        <Link class="nav-link" to="/cart">
-                            Cart<span class="badge badge-pill badge-info">{cartQty}</span>
+                        <li className="nav-item">
+                        <Link className="nav-link" to="/cart">
+                            Cart<span className="badge badge-pill badge-info">{cartQty}</span>
                         </Link>
                         </li>
                     </ul>

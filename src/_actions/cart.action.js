@@ -28,7 +28,7 @@ function placeOrder(products) {
         return {
             type: cartConstants.PLACE_ORDER_SUCCESS,
             payload: [{
-                itemName: data._id,
+                productName: data._id,
                 price: data.title,
                 qty: data.body,
             }]
