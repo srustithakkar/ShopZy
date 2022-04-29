@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, PureComponent } from "react";
 import "./item.css";
 import { connect } from "react-redux";
 import { CartActions } from "../_actions/cart.action";
@@ -9,17 +9,21 @@ import store from "../_helpers/Store";
 import Promos from "../_helpers/promo.json" 
 
 function Cart(props) {
-    let warning = false;
+    const [warning, setWarning] = useState('')
     const [code, setCode] = useState('');
+    const [payment, setPayment] = useState('');
     const { products, orderNumber } = props;
+    const [discountAmount, setDiscountAmount] = useState('')
     let Store = store.getState();
+    let total = 0;
+    let discount;
 
     const totalPrice = (products) => {
-        let total = 0;
         products.forEach((product) => {
         total = total + product.price * product.qty;
         });
         Store.OrderNumberReducer.TotalPrice = total;
+        total = total.toFixed(2);
         return total;
     };
     const addOrderNumber = (products) => {
@@ -36,45 +40,53 @@ function Cart(props) {
     const handleApply = () => {
         Promos.promo.map((promo) => {
             if(code === promo.promoCode) {
-                console.log("promo is applicable")
-            
+                setWarning("");
+                discount = ( total * promo.discount ) / 100;
+                setDiscountAmount(discount)
+                setPayment((total - discount).toFixed(2));
             }else {
-                warning = true;
-                console.log(warning)
+                setDiscountAmount('')
+                setWarning("Please Enter Valid Code");
+                discount ?  setPayment((total + discount).toFixed(2)) : setPayment(total.toFixed(2));
             }
         })
     }
-
-    function Warning(props) {
-        console.log("warning")
-        const warning = props.warning;
-        if (warning) {
-            return <div>Please enter valid code</div>
-        }else {
-            return ''
-        }
-    }
-      
 
 const OnCodeChange = (e) => {
         setCode(e.target.value)
     }
     return (
         <div>
-        <Nav />
-        <div className="row m-4">
-            {products.map((item, key) => (
-            <Item addProduct={props.addProduct} products={products} item={item} key={key} />
-            ))}
-        </div>
-        <Warning warning= {warning}/> 
+            <Nav />
+            <div className="row m-4">
+                {products.map((item, key) => (
+                <Item addProduct={props.addProduct} products={products} item={item} key={key} />
+                ))}
+            </div>
+            <div>
+            { warning ? <b className= "text-danger" > {warning} </b> :
+                <div></div> 
+            }
+
+    </div>
+        <div>
+        {/* {warning
+            ? <div>Please enter valid code </div> 
+            : ''
+        } */}
+    </div>
+        
         <div className="card-footer bg-transparent d-flex align-items-center">
             <div>Apply Coupon</div>
             <input type="text" className="ml-2 font-weight-light pl-2" placeholder="Enter coupon code" onChange={OnCodeChange}></input>
             <button className="btn btn-info font-weight-bolder ml-2 " onClick={handleApply}>Apply</button>
         </div>
-        <div className="card-footer text-center d-flex justify-content-between">
-            <h4 className="font-weight-bold ">Total: $ {totalPrice(products)} </h4>
+        <div className="text-right"> Total: $ {totalPrice(products)} </div>
+        { discountAmount ? <div className="text-right"> Discount Amount {discountAmount} </div> :
+                <div></div> 
+            }
+        <div className="card-footer text-center d-flex justify-content-end">
+            <h4 className="font-weight-bold mr-5 "> $ {payment}</h4>
             <button
             type="button"
             className="btn btn-info font-weight-bolder"
@@ -86,7 +98,7 @@ const OnCodeChange = (e) => {
         </div>
     );
     }
-
+ 
     const mapStateToProps = (state) => {
     const products = state.CartReducer.products;
     return {
